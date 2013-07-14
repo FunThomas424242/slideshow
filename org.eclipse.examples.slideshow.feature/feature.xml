@@ -4,7 +4,7 @@
       label="Eclipse Slideshow Feature"
       version="0.2.0.qualifier"
       license-feature="org.eclipse.platform"
-      license-feature-version="4.2.1.qualifier">
+      license-feature-version="4.3.0.qualifier">
 
    <description url="http://eclipse.org/examples/example.php?id=slideshow">
       Eclipse Slideshow is an experiment in presentation simplicity. It separates content generation from presentation. As a content producer, you provide content in a wiki format; Slideshow uses that content to generate the best slides it can muster. It automatically positions graphics based on dimensions and makes text and other elements fit in the space provided.
@@ -32,7 +32,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.text"/>
       <import plugin="org.eclipse.osgi"/>
-      <import plugin="com.lowagie.text"/>
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.swt"/>
       <import plugin="org.eclipse.examples.slideshow.core" version="0.1.0" match="greaterOrEqual"/>
@@ -42,6 +41,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ui.editors"/>
       <import plugin="org.eclipse.examples.slideshow.text" version="0.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="com.lowagie.itext"/>
    </requires>
 
    <plugin
