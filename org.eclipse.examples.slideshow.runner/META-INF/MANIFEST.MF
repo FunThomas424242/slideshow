@@ -4,9 +4,7 @@ Bundle-Name: Slideshow Runner Plug-in
 Bundle-SymbolicName: org.eclipse.examples.slideshow.runner
 Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: com.lowagie.text;version="[2.1.0,3.0.0)",
- com.lowagie.text.pdf;version="[2.1.0,3.0.0)",
- org.eclipse.core.runtime,
+Import-Package: org.eclipse.core.runtime,
  org.eclipse.draw2d,
  org.eclipse.draw2d.geometry,
  org.eclipse.draw2d.text,
@@ -24,3 +22,4 @@ Export-Package: org.eclipse.examples.slideshow.rendering,
  org.eclipse.examples.slideshow.templates.eclipse,
  org.eclipse.examples.slideshow.viewer
 Bundle-ActivationPolicy: lazy
+Require-Bundle: com.lowagie.itext;bundle-version="1.5.4"
