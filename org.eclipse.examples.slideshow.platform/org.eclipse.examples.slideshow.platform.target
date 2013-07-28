@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="org.eclipse.examples.slideshow.platform" sequenceNumber="37">
+<?pde version="3.8"?><target name="org.eclipse.examples.slideshow.platform" sequenceNumber="40">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.mylyn.wikitext.sdk.feature.group" version="1.8.0.v20130612-0100"/>
-<unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="1.8.0.v20130612-0100"/>
-<unit id="org.eclipse.draw2d.feature.group" version="3.9.0.201305060205"/>
-<unit id="org.eclipse.draw2d.sdk.feature.group" version="3.9.0.201305060205"/>
-<repository location="http://download.eclipse.org/releases/kepler"/>
-</location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.0.v20130529-1710"/>
 <unit id="org.eclipse.jdt.source.feature.group" version="3.9.0.v20130605-2000"/>
@@ -26,6 +19,24 @@
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.jsf.feature.feature.group" version="3.6.0.v201305011549-7E7e-F9JgLWrMBLWXC1s"/>
 <repository location="http://download.eclipse.org/releases/kepler"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.e4.core.tools.feature.feature.group" version="0.14.0.v20130620-0935"/>
+<unit id="org.eclipse.e4.tools.css.spy.feature.feature.group" version="0.14.0.v20130617-1345"/>
+<repository location="http://download.vogella.com/kepler/e4tools"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.mylyn.wikitext.sdk.feature.group" version="1.8.0.v20130612-0100"/>
+<unit id="org.eclipse.draw2d.feature.group" version="3.9.0.201305060205"/>
+<unit id="org.eclipse.mylyn.docs.intent.markup.feature.feature.group" version="0.8.0.201306030818"/>
+<unit id="org.eclipse.draw2d.sdk.feature.group" version="3.9.0.201305060205"/>
+<unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="1.8.0.v20130612-0100"/>
+<repository location="http://download.eclipse.org/releases/kepler"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.test.feature.group" version="3.6.0.v20130424-0442"/>
+<unit id="org.eclipse.platform.sdk" version="4.3.0.I20130605-2000"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.3"/>
 </location>
 </locations>
 <environment>
