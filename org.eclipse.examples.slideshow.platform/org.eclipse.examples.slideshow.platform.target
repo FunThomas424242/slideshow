@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="org.eclipse.examples.slideshow.platform" sequenceNumber="11">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.jdt.feature.group" version="3.9.0.v20130605-2000"/>
+<repository location="http://download.eclipse.org/releases/kepler"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.lowagie.itext.feature.group" version="1.5.4.v20080225-1437w31191339"/>
+<repository location="http://market.eclipsesource.com/yoxos/mpc/latestrepo/com.lowagie.itext.feature.group/4.3.0.v20130605-2000/"/>
+</location>
+</locations>
+<environment>
+<os>win32</os>
+<ws>win32</ws>
+<arch>x86</arch>
+<nl>de_DE</nl>
+</environment>
+</target>

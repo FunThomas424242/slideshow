@@ -7,13 +7,15 @@
 		<artifactId>org.eclipse.examples.slideshow.parent</artifactId>
 		<version>0.2.0.qualifier</version>
 	</parent>
-	<artifactId>org.eclipse.examples.slideshow.jdt.tests</artifactId>
-	<packaging>eclipse-test-plugin</packaging>
+	<artifactId>org.eclipse.examples.slideshow.platform</artifactId>
+	<packaging>eclipse-target-definition</packaging>
 
 	<name>Eclipse Slideshow</name>
 	<url>https://github.com/waynebeaton/slideshow</url>
 
 	
+
+
 	<dependencies>
 
 	</dependencies>
