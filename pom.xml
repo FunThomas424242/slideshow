@@ -2,11 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-
-
-
 	<groupId>org.eclipse.examples</groupId>
-	<artifactId>slideshow</artifactId>
+	<artifactId>org.eclipse.examples.slideshow.parent</artifactId>
 	<version>0.2.0.qualifier</version>
 
 	<packaging>pom</packaging>
@@ -15,12 +12,16 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<tycho-version>0.18.1</tycho-version>
 		<tycho.test.jvmArgs>-Xmx512m -XX:MaxPermSize=256m</tycho.test.jvmArgs>
 	</properties>
 
+	
+
+
 	<dependencyManagement>
 		<dependencies>
-		
+
 
 		</dependencies>
 	</dependencyManagement>
@@ -33,21 +34,50 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<configuration>
+					<target>
+						<artifact>
+							<groupId>org.eclipse.examples</groupId>
+							<artifactId>org.eclipse.examples.slideshow.platform</artifactId>
+							<version>${project.version}</version>
+						</artifact>
+					</target>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+					</environments>
+
+				</configuration>
+			</plugin>
 		</plugins>
-		
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-maven-plugin</artifactId>
-					<version>0.18.1</version>
+					<version>${tycho-version}</version>
 					<extensions>true</extensions>
 				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>target-platform-configuration</artifactId>
+					<version>${tycho-version}</version>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
 
 	<modules>
+		<module>org.eclipse.examples.slideshow.platform</module>
 		<module>org.eclipse.examples.slideshow.core</module>
 		<module>org.eclipse.examples.slideshow.feature</module>
 		<module>org.eclipse.examples.slideshow.jdt</module>
