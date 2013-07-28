@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.eclipse.examples</groupId>
+		<artifactId>org.eclipse.examples.slideshow.parent</artifactId>
+		<version>0.2.0.qualifier</version>
+	</parent>
+	<artifactId>org.eclipse.examples.slideshow.jdt</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<name>Eclipse Slideshow</name>
+	<url>https://github.com/waynebeaton/slideshow</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<dependencies>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+</project>

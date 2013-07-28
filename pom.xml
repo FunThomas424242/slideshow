@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+
+
+	<groupId>org.eclipse.examples</groupId>
+	<artifactId>slideshow</artifactId>
+	<version>0.2.0.qualifier</version>
+
+	<packaging>pom</packaging>
+	<name>Eclipse Slideshow</name>
+	<url>https://github.com/waynebeaton/slideshow</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<tycho.test.jvmArgs>-Xmx512m -XX:MaxPermSize=256m</tycho.test.jvmArgs>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+		
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<build>
+		<!-- inherited plugins to subprojects -->
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>0.18.1</version>
+					<extensions>true</extensions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<modules>
+		<module>org.eclipse.examples.slideshow.core</module>
+		<module>org.eclipse.examples.slideshow.feature</module>
+		<module>org.eclipse.examples.slideshow.jdt</module>
+		<module>org.eclipse.examples.slideshow.jdt.tests</module>
+		<module>org.eclipse.examples.slideshow.runner</module>
+		<module>org.eclipse.examples.slideshow.runner.tests</module>
+		<module>org.eclipse.examples.slideshow.site</module>
+		<module>org.eclipse.examples.slideshow.text</module>
+		<module>org.eclipse.examples.slideshow.text.tests</module>
+		<module>org.eclipse.examples.slideshow.ui</module>
+	</modules>
+
+
+
+</project>
