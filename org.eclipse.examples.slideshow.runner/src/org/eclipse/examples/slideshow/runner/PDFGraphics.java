@@ -46,18 +46,17 @@ import com.lowagie.text.pdf.PdfWriter;
 /**
  * This class is used to render draw2d figures into a PDF file.
  * <p>
- * Ultimately, this class belongs in its own package; it has more to
- * do with GEF draw2d than Slideshow. Once we have evolved this class
- * to a point where it has enough functionality as to be more generally
- * useful, we will move it.
+ * Ultimately, this class belongs in its own package; it has more to do with GEF
+ * draw2d than Slideshow. Once we have evolved this class to a point where it
+ * has enough functionality as to be more generally useful, we will move it.
  */
 public class PDFGraphics extends Graphics {
 
 	private final Document document;
 
-	private PdfWriter writer;
-	private PdfContentByte contentByte;
-	private Stack<State> stateStack = new Stack<State>();
+	private final PdfWriter writer;
+	private final PdfContentByte contentByte;
+	private final Stack<State> stateStack = new Stack<State>();
 
 	class State implements Cloneable {
 		private int dx;
@@ -67,8 +66,9 @@ public class PDFGraphics extends Graphics {
 		public int fontHeight;
 		public float lineWidth = 1.0f;
 		public java.awt.Color foregroundColor = new java.awt.Color(0, 0, 0);
-		public java.awt.Color backgroundColor = new java.awt.Color(0xFF, 0xFF, 0xFF);
-		
+		public java.awt.Color backgroundColor = new java.awt.Color(0xFF, 0xFF,
+				0xFF);
+
 		protected State cloneState() {
 			try {
 				return (State) clone();
@@ -77,13 +77,16 @@ public class PDFGraphics extends Graphics {
 			}
 		}
 	}
-	
-	public PDFGraphics(Document document, PdfWriter writer) throws DocumentException {
-		this.document = document; 
+
+	public PDFGraphics(Document document, PdfWriter writer)
+			throws DocumentException {
+		this.document = document;
 		this.writer = writer;
 		contentByte = writer.getDirectContent();
-		//contentByte.concatCTM(1f, 0f, 0f, -1f, 0f, document.getPageSize().height());
-		//contentByte.concatCTM(0.5f, 0f, 0f, 0.5f, 0f, 200f); // Scale and shift up
+		// contentByte.concatCTM(1f, 0f, 0f, -1f, 0f,
+		// document.getPageSize().height());
+		// contentByte.concatCTM(0.5f, 0f, 0f, 0.5f, 0f, 200f); // Scale and
+		// shift up
 		stateStack.push(new State());
 	}
 
@@ -95,7 +98,6 @@ public class PDFGraphics extends Graphics {
 	@Override
 	public void dispose() {
 	}
-
 
 	@Override
 	public void drawArc(int x, int y, int w, int h, int offset, int length) {
@@ -116,15 +118,16 @@ public class PDFGraphics extends Graphics {
 	}
 
 	@Override
-	public void drawImage(Image srcImage, int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
+	public void drawImage(Image srcImage, int x1, int y1, int w1, int h1,
+			int x2, int y2, int w2, int h2) {
 		File file = null;
 		FileOutputStream out = null;
 		try {
 			file = File.createTempFile("pdf", ".png");
 			out = new FileOutputStream(file);
 			ImageLoader loader = new ImageLoader();
-			loader.data = new ImageData[] {srcImage.getImageData()};
-			loader.save(out, SWT.IMAGE_PNG);	
+			loader.data = new ImageData[] { srcImage.getImageData() };
+			loader.save(out, SWT.IMAGE_PNG);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -135,11 +138,15 @@ public class PDFGraphics extends Graphics {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}		
-		
+		}
+
 		try {
-			com.lowagie.text.Image image = com.lowagie.text.Image.getInstance(file.getAbsolutePath());
-			contentByte.addImage(image, w2,0,0,h2, x2+getState().dx, document.getPageSize().getHeight() - (y2+getState().dy + h2), true);
+			com.lowagie.text.Image image = com.lowagie.text.Image
+					.getInstance(file.getAbsolutePath());
+			contentByte
+					.addImage(image, w2, 0, 0, h2, x2 + getState().dx,
+							document.getPageSize().height()
+									- (y2 + getState().dy + h2), true);
 		} catch (BadElementException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -178,7 +185,8 @@ public class PDFGraphics extends Graphics {
 	@Override
 	public void drawRectangle(int x, int y, int width, int height) {
 		contentByte.setLineWidth(getState().lineWidth);
-		contentByte.rectangle(x+getState().dx, document.getPageSize().getHeight()-(y+getState().dy), width, -height);
+		contentByte.rectangle(x + getState().dx, document.getPageSize()
+				.height() - (y + getState().dy), width, -height);
 		contentByte.stroke();
 	}
 
@@ -195,13 +203,15 @@ public class PDFGraphics extends Graphics {
 	@Override
 	public void drawText(String string, int x, int y) {
 		float fontHeight = getState().fontHeight * 4 / 3;
-		com.lowagie.text.Font font = FontFactory.getFont(getState().fontFamily, fontHeight, getState().fontStyle);
+		com.lowagie.text.Font font = FontFactory.getFont(getState().fontFamily,
+				fontHeight, getState().fontStyle);
 		BaseFont bf = font.getBaseFont();
-		
+
 		contentByte.beginText();
 		contentByte.setColorFill(getState().foregroundColor);
 		contentByte.setFontAndSize(bf, fontHeight);
-		contentByte.setTextMatrix(x+getState().dx, document.getPageSize().getHeight() - (y+getState().dy));
+		contentByte.setTextMatrix(x + getState().dx, document.getPageSize()
+				.height() - (y + getState().dy));
 		contentByte.showText(string);
 		contentByte.endText();
 	}
@@ -249,11 +259,11 @@ public class PDFGraphics extends Graphics {
 	@Override
 	public Rectangle getClip(Rectangle rect) {
 		com.lowagie.text.Rectangle pageSize = document.getPageSize();
-		rect.x = (int) pageSize.getLeft();
-		rect.y = 0; //(int) pageSize.top();
-		rect.width = (int) pageSize.getWidth();
-		rect.height = (int) pageSize.getHeight();		
-		
+		rect.x = (int) pageSize.left();
+		rect.y = 0; // (int) pageSize.top();
+		rect.width = (int) pageSize.width();
+		rect.height = (int) pageSize.height();
+
 		return rect;
 	}
 
@@ -276,7 +286,7 @@ public class PDFGraphics extends Graphics {
 		notImplemented("getForegroundColor");
 		return null;
 	}
-	
+
 	@Override
 	public Color getBackgroundColor() {
 		notImplemented("getBackgroundColor");
@@ -297,7 +307,7 @@ public class PDFGraphics extends Graphics {
 
 	@Override
 	public float getLineWidthFloat() {
-		return getState().lineWidth ;
+		return getState().lineWidth;
 	}
 
 	@Override
@@ -315,14 +325,14 @@ public class PDFGraphics extends Graphics {
 	@Override
 	public void pushState() {
 		contentByte.saveState();
-		stateStack.push((State) getState().cloneState());
+		stateStack.push(getState().cloneState());
 	}
 
 	@Override
 	public void restoreState() {
 		/*
-		 * Since we configure our state with each graphics operation,
-		 * there's nothing to do here.
+		 * Since we configure our state with each graphics operation, there's
+		 * nothing to do here.
 		 */
 	}
 
@@ -342,20 +352,25 @@ public class PDFGraphics extends Graphics {
 		getState().fontFamily = fontData.getName();
 		int style = fontData.getStyle();
 		getState().fontStyle = 0;
-		if ((style & SWT.NORMAL) > 0) getState().fontStyle |= com.lowagie.text.Font.NORMAL;
-		if ((style & SWT.BOLD) > 0) getState().fontStyle |= com.lowagie.text.Font.BOLD;
-		if ((style & SWT.ITALIC) > 0) getState().fontStyle |= com.lowagie.text.Font.ITALIC;
+		if ((style & SWT.NORMAL) > 0)
+			getState().fontStyle |= com.lowagie.text.Font.NORMAL;
+		if ((style & SWT.BOLD) > 0)
+			getState().fontStyle |= com.lowagie.text.Font.BOLD;
+		if ((style & SWT.ITALIC) > 0)
+			getState().fontStyle |= com.lowagie.text.Font.ITALIC;
 		getState().fontHeight = fontData.getHeight();
 	}
 
 	@Override
 	public void setForegroundColor(Color rgb) {
-		getState().foregroundColor = new java.awt.Color(rgb.getRed(), rgb.getGreen(), rgb.getBlue());
+		getState().foregroundColor = new java.awt.Color(rgb.getRed(),
+				rgb.getGreen(), rgb.getBlue());
 	}
 
 	@Override
 	public void setBackgroundColor(Color rgb) {
-		getState().backgroundColor = new java.awt.Color(rgb.getRed(), rgb.getGreen(), rgb.getBlue());
+		getState().backgroundColor = new java.awt.Color(rgb.getRed(),
+				rgb.getGreen(), rgb.getBlue());
 	}
 
 	@Override
@@ -365,7 +380,7 @@ public class PDFGraphics extends Graphics {
 
 	@Override
 	public void setLineStyle(int style) {
-		 notImplemented("setLineStyle");
+		notImplemented("setLineStyle");
 	}
 
 	@Override
@@ -394,32 +409,37 @@ public class PDFGraphics extends Graphics {
 	}
 
 	/**
-	 * This field is used to keep track of the names of any
-	 * methods that an attempt has been made to use despite
-	 * the fact that the method has not yet been implemented.
+	 * This field is used to keep track of the names of any methods that an
+	 * attempt has been made to use despite the fact that the method has not yet
+	 * been implemented.
 	 * 
 	 * @see #notImplemented(String)
 	 */
 	Set<String> notImplemented = new HashSet<String>();
-	
+
 	/**
-	 * This method logs the fact that an attempt has been made
-	 * to use a particular method but the method has not yet been
-	 * implemented. Note that each instance of the class will
-	 * only log the missing method once. Note further that
-	 * this functionality is temporary; it will be removed when
-	 * the required functionality has been implemented.
+	 * This method logs the fact that an attempt has been made to use a
+	 * particular method but the method has not yet been implemented. Note that
+	 * each instance of the class will only log the missing method once. Note
+	 * further that this functionality is temporary; it will be removed when the
+	 * required functionality has been implemented.
 	 * 
-	 * @param name the name of the method. Must not be <code>null</code>.
+	 * @param name
+	 *            the name of the method. Must not be <code>null</code>.
 	 */
 	private void notImplemented(String name) {
-		if (notImplemented.contains(name)) return;
+		if (notImplemented.contains(name))
+			return;
 		notImplemented.add(name);
-		
-		String message =  "PDF Graphics does not implement: " + name;
+
+		String message = "PDF Graphics does not implement: " + name;
 		if (Activator.getDefault() != null) {
 			if (Activator.getDefault().getLog() == null) {
-				Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, message));
+				Activator
+						.getDefault()
+						.getLog()
+						.log(new Status(IStatus.INFO, Activator.PLUGIN_ID,
+								message));
 				return;
 			}
 		}
