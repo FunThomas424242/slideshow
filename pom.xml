@@ -10,13 +10,30 @@
 	<name>Eclipse Slideshow</name>
 	<url>https://github.com/waynebeaton/slideshow</url>
 
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho-version>0.18.1</tycho-version>
 		<tycho.test.jvmArgs>-Xmx512m -XX:MaxPermSize=256m</tycho.test.jvmArgs>
 	</properties>
 
-	
+	<repositories>
+		<repository>
+			<id>kepler</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/kepler</url>
+		</repository>
+		<repository>
+			<id>draw2gef</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/tools/gef/updates/interim/</url>
+		</repository>
+	</repositories>
+
 
 
 	<dependencyManagement>
@@ -39,6 +56,7 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<configuration>
+					<resolver>p2</resolver>
 					<target>
 						<artifact>
 							<groupId>org.eclipse.examples</groupId>
