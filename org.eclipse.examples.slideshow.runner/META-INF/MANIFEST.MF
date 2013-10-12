@@ -19,5 +19,5 @@ Export-Package: org.eclipse.examples.slideshow.rendering,
  org.eclipse.examples.slideshow.templates.eclipse,
  org.eclipse.examples.slideshow.viewer
 Bundle-ActivationPolicy: lazy
-Require-Bundle: com.lowagie.text,
- org.eclipse.draw2d
+Require-Bundle: org.eclipse.draw2d,
+ com.lowagie.itext
