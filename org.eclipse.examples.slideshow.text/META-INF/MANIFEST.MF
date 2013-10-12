@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.examples.slideshow.text
 Bundle-Version: 0.2.0.qualifier
 Bundle-Vendor: The Eclipse Foundation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.examples.slideshow.core;bundle-version="0.1.0"
+Require-Bundle: org.eclipse.examples.slideshow.core
 Import-Package: org.eclipse.core.runtime;version="[3.4.0,4.0.0)",
  org.eclipse.mylyn.wikitext.core.parser,
  org.eclipse.mylyn.wikitext.core.parser.markup,
